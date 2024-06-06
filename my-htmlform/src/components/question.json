@@ -1,0 +1,148 @@
+{
+	"nexus_id": "153",
+	"nexus_name": "สำรวจ ชายหาด(ไม่)สาธารณะ",
+	"nexus_detail": "ปักหมุด สำรวจ “ชายหาด(ไม่)สาธารณะ” ชายหาดของใคร เข้าถึงกันไหม ?\n\nแคมเปญสำรวจการเข้าถึงพื้นที่สาธารณะ หาดสาธารณะ Beach for life x แลต๊ะแลใต้ x  Public Intelligence",
+	"nexus_detail_pic": "https://s3-ap-southeast-1.amazonaws.com/com.csitereport.s3/nexus/question/01ab1cbf8089166ace89abd3930d8e46.jpg",
+	"nexus_date_create": "2024-03-28 12:17:58",
+	"question": [
+		{
+			"question_no": "1",
+			"question_name": "ชื่อชายหาด",
+			"question_detail_pic": "",
+			"question_type": "5",
+			"is_require": "1",
+			"question_choice": [],
+			"user_ans": "หาดทุ่งวัวแล่น",
+			"user_ans_text": ""
+		},
+		{
+			"question_no": "2",
+			"question_name": "มีทางเข้าถึงหาดสาธารณะไหม",
+			"question_type": "1",
+			"is_require": "1",
+			"question_choice": [
+				{
+					"question_choice_no": "1",
+					"question_choice_text": "มี",
+					"is_other": "0"
+				},
+				{
+					"question_choice_no": "2",
+					"question_choice_text": "ไม่มี",
+					"is_other": "0"
+				}
+			],
+			"user_ans": 1,
+			"user_ans_text": ""
+		},
+		{
+			"question_no": "3",
+			"question_name": "เข้าออกสะดวกตลอดแนวชายหาดหรือไม่",
+			"question_type": "1",
+			"is_require": "1",
+			"question_choice": [
+				{
+					"question_choice_no": "1",
+					"question_choice_text": "เข้าถึงได้โดยสะดวกมีทางเข้า-ออก",
+					"is_other": "0"
+				},
+				{
+					"question_choice_no": "2",
+					"question_choice_text": "เข้าถึงได้แต่ต้องผ่านทางเอกชนหรือโรงแรม",
+					"is_other": "0"
+				},
+				{
+					"question_choice_no": "3",
+					"question_choice_text": "เข้าถึงได้แต่ต้องเดินอ้อม",
+					"is_other": "0"
+				},
+				{
+					"question_choice_no": "4",
+					"question_choice_text": "เข้าถึงไม่ได้ทางสาธารณะถูกปิดกั้น",
+					"is_other": "0"
+				}
+			],
+			"user_ans": 1,
+			"user_ans_text": ""
+		},
+		{
+			"question_no": "4",
+			"question_name": "หากข้อ 4 ตอบ เข้าถึงไม่ได้ทางสาธารณะถูกปิดกั้น ช่วยบอกหน่อยเข้าไม่ได้เพราะถูกปิดกั้นอย่างไร",
+			"question_type": "5",
+			"is_require": "0",
+			"question_choice": [],
+			"user_ans": "",
+			"user_ans_text": ""
+		},
+		{
+			"question_no": "5",
+			"question_name": "มีป้ายบอกทางเข้าชายหาด",
+			"question_type": "1",
+			"is_require": "1",
+			"question_choice": [
+				{
+					"question_choice_no": "1",
+					"question_choice_text": "มี",
+					"is_other": "0"
+				},
+				{
+					"question_choice_no": "2",
+					"question_choice_text": "ไม่มี",
+					"is_other": "0"
+				},
+				{
+					"question_choice_no": "3",
+					"question_choice_text": "ไม่แน่ใจ",
+					"is_other": "0"
+				}
+			],
+			"user_ans": 3,
+			"user_ans_text": ""
+		},
+		{
+			"question_no": "6",
+			"question_name": "ระยะในการเข้าถึงชายหาด (เมตร)",
+			"question_type": "5",
+			"is_require": "0",
+			"question_choice": [],
+			"user_ans": "2000",
+			"user_ans_text": ""
+		},
+		{
+			"question_no": "7",
+			"question_name": "ลักษณะชายหาด",
+			"question_type": "2",
+			"is_require": "1",
+			"question_choice": [
+				{
+					"question_choice_no": "1",
+					"question_choice_text": "พื้นที่ประมง /จอดเรือ",
+					"is_other": "0"
+				},
+				{
+					"question_choice_no": "2",
+					"question_choice_text": "หาดท่องเที่ยว พักผ่อนหย่อนใจ",
+					"is_other": "0"
+				},
+				{
+					"question_choice_no": "3",
+					"question_choice_text": "อื่นๆ",
+					"is_other": "1"
+				}
+			],
+			"user_ans": [
+				3
+			],
+			"user_ans_text": "หาดส่วนตัว"
+		},
+		{
+			"question_no": "8",
+			"question_name": "ความคิดเห็นอื่นๆ",
+			"question_type": "5",
+			"is_require": "0",
+			"question_choice": [],
+			"user_ans": "",
+			"user_ans_text": ""
+		}
+	]
+}
