@@ -43,11 +43,15 @@
 
       </div>
       <button type="submit">ส่งแบบสอบถาม</button>
+      <button @click="clear">รีเซทแบบฟอร์ม</button>
     </form>   
   </div>
 </template>
 
 <script>
+let download =require("downloadjs")
+//let fs = require('node:fs');
+//import {writeJsonFileSync} from 'write-json-file';
 let json = require('./question.json');
   export default {
     data() {
@@ -57,19 +61,36 @@ let json = require('./question.json');
     },
     methods: {
       submitForm() {
-          console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
-          //this.clear()
+          if(this.valid()){
+          //console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
+          download(JSON.stringify(this.questions), 'question.json', "text/plain");
+          this.clear()
+          }
         },
         clear(){
           for(let i =0; i<this.questions.length;i++){
             if(this.questions[i].question_type=='1'||this.questions[i].question_type=='5'){
-              this.questions[i].user_ans=''
+              this.questions[i].user_ans= null
               this.questions[i].user_ans_text=''}
             else if(this.questions[i].question_type=='2'){
               this.questions[i].user_ans=[]
               this.questions[i].user_ans_text=''}
             //console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
           }
+        },
+        valid(){
+          for(let i =0; i<this.questions.length;i++){
+            if(this.questions[i].is_require=='1'){
+              if(this.questions[i].user_ans == null){
+                break;
+              }
+            }
+            return true;
+          }
+          //writeJsonFileSync(this.json,this.questions)
+          //try{await fs.writeFile('./question.json',this.questions)}
+          //catch(err){console.log('error')}
+          //download(JSON.stringify(this.questions), 'question.json', "text/plain");
         }
 
   

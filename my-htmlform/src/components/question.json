@@ -12,7 +12,7 @@
 			"question_type": "5",
 			"is_require": "1",
 			"question_choice": [],
-			"user_ans": "หาดทุ่งวัวแล่น",
+			"user_ans": null,
 			"user_ans_text": ""
 		},
 		{
@@ -32,7 +32,7 @@
 					"is_other": "0"
 				}
 			],
-			"user_ans": 1,
+			"user_ans": null,
 			"user_ans_text": ""
 		},
 		{
@@ -62,7 +62,7 @@
 					"is_other": "0"
 				}
 			],
-			"user_ans": 1,
+			"user_ans": null,
 			"user_ans_text": ""
 		},
 		{
@@ -96,7 +96,7 @@
 					"is_other": "0"
 				}
 			],
-			"user_ans": 3,
+			"user_ans": null,
 			"user_ans_text": ""
 		},
 		{
@@ -105,7 +105,7 @@
 			"question_type": "5",
 			"is_require": "0",
 			"question_choice": [],
-			"user_ans": "2000",
+			"user_ans": null,
 			"user_ans_text": ""
 		},
 		{
@@ -131,9 +131,9 @@
 				}
 			],
 			"user_ans": [
-				3
+				
 			],
-			"user_ans_text": "หาดส่วนตัว"
+			"user_ans_text": ""
 		},
 		{
 			"question_no": "8",
@@ -141,7 +141,7 @@
 			"question_type": "5",
 			"is_require": "0",
 			"question_choice": [],
-			"user_ans": "",
+			"user_ans": null,
 			"user_ans_text": ""
 		}
 	]
