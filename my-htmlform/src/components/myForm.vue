@@ -11,8 +11,11 @@
             <span class="required">*</span>
           </div>
           <div v-for="choice in selected_question.question_choice" :key="choice.question_choice_no">
-            <input type="radio" v-model="userAnswersRadio[selected_question.question_no]" :value="choice.question_choice_no" />
+            <input type="radio" v-model="selected_question.user_ans" :value="Number(choice.question_choice_no)" />
             <label>{{ choice.question_choice_text }}</label>
+            <div v-if="choice.is_other=='1'">
+              <input type="text" v-model="selected_question.user_ans__text" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม" />
+            </div>
           </div>
         </div>
 
@@ -22,10 +25,10 @@
             <span class="required">*</span>
           </div>
           <div v-for="choice in selected_question.question_choice" :key="choice.question_choice_no">
-            <input type="checkbox" v-model="userAnswersCheckbox" :value="choice.question_choice_no" />
+            <input type="checkbox" v-model="selected_question.user_ans" :value="Number(choice.question_choice_no)" />
             <label>{{ choice.question_choice_text }}</label>
             <div v-if="choice.is_other=='1'">
-              <input type="text" v-model="userAnswersOtherCheckbox" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม" />
+              <input type="text" v-model="selected_question.user_ans_text" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม" />
             </div>
           </div>
         </div>
@@ -35,7 +38,7 @@
           <div v-if="selected_question.is_require=='1'">
             <span class="required">*</span>
           </div>
-          <textarea v-model="userAnswersText[selected_question.question_no]" placeholder="กรุณาตอบคำถามนี้"></textarea>
+          <textarea v-model="selected_question.user_ans" placeholder="กรุณาตอบคำถามนี้"></textarea>
         </div>
 
       </div>
@@ -50,20 +53,23 @@ let json = require('./question.json');
     data() {
       return{
       questions: json.question , // เก็บข้อมูลแบบสอบถามจากไฟล์ question.json
-      userAnswersRadio: [],
-      userAnswersCheckbox: [],
-      userAnswersText: [], 
-      userAnswersOtherRadio: [],
-      userAnswersOtherCheckbox: [] 
       }
     },
     methods: {
       submitForm() {
-       
-          console.log('ส่งข้อมูลแบบสอบถาม Radio Box:', this.userAnswersRadio);
-          console.log('text:', this.userAnswersText);
-          console.log('ส่งข้อมูลแบบสอบถาม Checkbox:', this.userAnswersCheckbox);
-          console.log('ส่งข้อมูลแบบสอบถาม Checkboxtext:', this.userAnswersOtherCheckbox);
+          console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
+          //this.clear()
+        },
+        clear(){
+          for(let i =0; i<this.questions.length;i++){
+            if(this.questions[i].question_type=='1'||this.questions[i].question_type=='5'){
+              this.questions[i].user_ans=''
+              this.questions[i].user_ans_text=''}
+            else if(this.questions[i].question_type=='2'){
+              this.questions[i].user_ans=[]
+              this.questions[i].user_ans_text=''}
+            //console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
+          }
         }
 
   
