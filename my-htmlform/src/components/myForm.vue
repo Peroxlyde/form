@@ -2,7 +2,7 @@
   <div class="form">
     <h1>แบบสอบถาม</h1>
     <form @submit.prevent="submitForm">
-      <div v-for="selected_question in questions" :key="selected_question.question_no">
+      <div v-for="selected_question in questions.question" :key="selected_question.question_no">
         <!--<p>{{ selected_question.question_name}}</p>-->
 
         <div v-if="selected_question.question_type == '1'">
@@ -56,7 +56,7 @@ let json = require('./question.json');
   export default {
     data() {
       return{
-      questions: json.question , // เก็บข้อมูลแบบสอบถามจากไฟล์ question.json
+      questions: json , // เก็บข้อมูลแบบสอบถามจากไฟล์ question.json
       }
     },
     methods: {
@@ -68,20 +68,20 @@ let json = require('./question.json');
           }
         },
         clear(){
-          for(let i =0; i<this.questions.length;i++){
-            if(this.questions[i].question_type=='1'||this.questions[i].question_type=='5'){
-              this.questions[i].user_ans= null
-              this.questions[i].user_ans_text=''}
-            else if(this.questions[i].question_type=='2'){
-              this.questions[i].user_ans=[]
-              this.questions[i].user_ans_text=''}
+          for(let i =0; i<this.questions.question.length;i++){
+            if(this.questions.question[i].question_type=='1'||this.questions.question[i].question_type=='5'){
+              this.questions.question[i].user_ans= null
+              this.questions.question[i].user_ans_text=''}
+            else if(this.questions.question[i].question_type=='2'){
+              this.questions.question[i].user_ans=[]
+              this.questions.question[i].user_ans_text=''}
             //console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
           }
         },
         valid(){
-          for(let i =0; i<this.questions.length;i++){
-            if(this.questions[i].is_require=='1'){
-              if(this.questions[i].user_ans == null){
+          for(let i =0; i<this.questions.question.length;i++){
+            if(this.questions.question[i].is_require=='1'){
+              if(this.questions.question[i].user_ans == null){
                 break;
               }
             }
