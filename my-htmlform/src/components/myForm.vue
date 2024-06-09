@@ -1,49 +1,59 @@
 <template>
   <div class="form">
-    <h1>แบบสอบถาม</h1>
+    <header>
+      <h1>แบบสอบถาม</h1>
+    </header>
     <form @submit.prevent="submitForm">
       <div v-for="selected_question in questions.question" :key="selected_question.question_no">
         <!--<p>{{ selected_question.question_name}}</p>-->
 
-        <div v-if="selected_question.question_type == '1'">
-          <h2>{{ selected_question.question_no }}. {{ selected_question.question_name }}</h2>
-          <div v-if="selected_question.is_require=='1'">
-            <span class="required">*</span>
-          </div>
-          <div v-for="choice in selected_question.question_choice" :key="choice.question_choice_no">
+        <div v-if="selected_question.question_type == '1' " class="cards">
+          <span class="quest">{{ selected_question.question_no }}. {{ selected_question.question_name }}</span>
+          <span v-if="selected_question.is_require=='1'" class="required">
+            <span>*</span>
+          </span>
+          <div class="choicepanel">
+          <div v-for="choice in selected_question.question_choice" :key="choice.question_choice_no" class="choice">
             <input type="radio" v-model="selected_question.user_ans" :value="Number(choice.question_choice_no)" />
             <label>{{ choice.question_choice_text }}</label>
             <div v-if="choice.is_other=='1'">
-              <input type="text" v-model="selected_question.user_ans__text" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม" />
+              <input type="text" v-model="selected_question.user_ans__text" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม" class="textbox" />
             </div>
           </div>
         </div>
+        </div>
 
-        <div v-if="selected_question.question_type === '2'">
-          <h2>{{ selected_question.question_no }}. {{ selected_question.question_name }}</h2>
-          <div v-if="selected_question.is_require=='1'">
-            <span class="required">*</span>
-          </div>
-          <div v-for="choice in selected_question.question_choice" :key="choice.question_choice_no">
+        <div v-if="selected_question.question_type === '2'" class="cards">
+          <span class="quest">{{ selected_question.question_no }}. {{ selected_question.question_name }}</span>
+          <span v-if="selected_question.is_require=='1'" class="required">
+            <span>*</span>
+          </span>
+          <div class="choicepanel">
+          <div v-for="choice in selected_question.question_choice" :key="choice.question_choice_no" class="choice">
             <input type="checkbox" v-model="selected_question.user_ans" :value="Number(choice.question_choice_no)" />
             <label>{{ choice.question_choice_text }}</label>
             <div v-if="choice.is_other=='1'">
-              <input type="text" v-model="selected_question.user_ans_text" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม" />
+              <input type="text" v-model="selected_question.user_ans_text" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม" class="textbox" />
             </div>
+          </div>
           </div>
         </div>
 
-        <div v-if="selected_question.question_type === '5'">
-          <h2>{{ selected_question.question_no }}. {{ selected_question.question_name }}</h2>
-          <div v-if="selected_question.is_require=='1'">
-            <span class="required">*</span>
+        <div v-if="selected_question.question_type === '5'" class="textcard">
+          <span class="quest">{{ selected_question.question_no }}. {{ selected_question.question_name }}</span>
+          <span v-if="selected_question.is_require=='1'" class="required">
+            <span>*</span>
+          </span>
+          <div class="textans">
+            <textarea v-model="selected_question.user_ans" placeholder="กรุณาตอบคำถามนี้" class="textbox"></textarea>
           </div>
-          <textarea v-model="selected_question.user_ans" placeholder="กรุณาตอบคำถามนี้"></textarea>
         </div>
 
       </div>
-      <button type="submit">ส่งแบบสอบถาม</button>
-      <button @click="clear">รีเซทแบบฟอร์ม</button>
+      <div class="cenbutton">
+        <button type="submit">ส่งแบบสอบถาม</button>
+        <button @click="clear">รีเซทแบบฟอร์ม</button>
+      </div>
     </form>   
   </div>
 </template>
@@ -101,5 +111,68 @@ let json = require('./question.json');
 </script>
 
 <style scoped>
+header{
+  margin: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  background-color: lightgoldenrodyellow;
+  padding: 0.5rem;
+  box-shadow: 0 1px 5px rgba(48, 48, 48, 0.459);
+}
+.cards{
+  margin: 2rem 1rem;
+  padding: 1rem 1.5rem;
+  background-color: rgba(250, 232, 198, 0.591);
+  box-shadow: 0 1px 5px rgba(48, 48, 48, 0.459);
+  padding-bottom: 0 2rem;
+  border-radius: 15px;
+}
+.textcard{
+  margin: 2rem 1rem;
+  padding: 1rem 1.5rem;
+  background-color: white;
+  box-shadow: 0 1px 5px rgba(48, 48, 48, 0.459);
+  padding-bottom: 0 2rem;
+  border-radius: 15px;
+}
+.textbox {
+  width: 95%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  resize: none;
+}
+.texans{
+  margin-top:10px;
+}
+.quest{
+  font-size: x-large;
+  font-weight: bold;
+}
+.choice{
+  margin:10px;
+}
+.choicepanel{
+  margin-top:10px;
+  background-color: rgb(255, 250, 244);
+  padding: 0.6rem;
+}
+button{
+  margin: 0 1rem ;
+  margin-bottom: 1rem;
+  font-size: medium;
+}
+.cenbutton{
+  text-align: center;
+}
+.required{
+  color: red;
+  font-weight: bold;
+  font-size: larger;
+  margin-left: 0.5rem;
+}
 
 </style>
