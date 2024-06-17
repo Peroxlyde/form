@@ -3,6 +3,7 @@
     <header>
       <h1>แบบสอบถาม</h1>
     </header>
+    <!--<div class="alert"><div class ='alertSuccess' v-if="isSuccess" >Your form has been submitted.</div></div>-->
     <form @submit.prevent="submitForm">
       <div v-for="selected_question in questions.question" :key="selected_question.question_no">
         <!--<p>{{ selected_question.question_name}}</p>-->
@@ -72,6 +73,7 @@ import axios from "axios";
     data() {
       return{
       questions:[] , // เก็บข้อมูลแบบสอบถามจากไฟล์ question.json
+      isSuccess:false
       }
     },
     methods: {
@@ -79,10 +81,12 @@ import axios from "axios";
           if(this.valid()){
           //console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
           //download(JSON.stringify(this.questions), 'question.json', "text/plain");
-          axios.post("https://testapi.gusarea.com/v1/public/question/setData",this.questions)
+          axios.post("https://testapi.gusarea.com/v1/public/question/setData",{json:this.questions})
           .then(response=>console.log(response))
           .catch(error=>console.log(error))
           //this.clear()
+          alert("Thank you!\nYour form has been submitted.");
+          this.isSuccess=true;
           }
         },
         clear(){
@@ -181,6 +185,21 @@ button{
   font-weight: bold;
   font-size: larger;
   margin-left: 0.5rem;
+}
+.alertSuccess{
+  margin: 2rem;
+  width: 80%;
+  text-align: center;
+  background-color: rgb(205, 240, 212);
+  padding: 2rem;
+  box-shadow: 0 1px 5px rgba(48, 48, 48, 0.459);
+  font-size: larger;
+  font-weight: bold;
+  color: rgb(38, 35, 35);
+}
+.alert{
+  display: flex;
+  justify-content: center;
 }
 
 </style>
