@@ -7,41 +7,41 @@
       <div v-for="selected_question in questions.question" :key="selected_question.question_no">
         <!--<p>{{ selected_question.question_name}}</p>-->
 
-        <div v-if="selected_question.question_type == '1' " class="cards">
+        <div v-if="selected_question.question_type == 1 " class="cards">
           <span class="quest">{{ selected_question.question_no }}. {{ selected_question.question_name }}</span>
-          <span v-if="selected_question.is_require=='1'" class="required">
+          <span v-if="selected_question.is_require==1" class="required">
             <span>*</span>
           </span>
           <div class="choicepanel">
           <div v-for="choice in selected_question.question_choice" :key="choice.question_choice_no" class="choice">
             <input type="radio" v-model="selected_question.user_ans" :value="Number(choice.question_choice_no)" />
             <label>{{ choice.question_choice_text }}</label>
-            <div v-if="choice.is_other=='1'">
+            <div v-if="choice.is_other==1">
               <input type="text" v-model="selected_question.user_ans__text" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม" class="textbox" />
             </div>
           </div>
         </div>
         </div>
 
-        <div v-if="selected_question.question_type === '2'" class="cards">
+        <div v-if="selected_question.question_type === 2" class="cards">
           <span class="quest">{{ selected_question.question_no }}. {{ selected_question.question_name }}</span>
-          <span v-if="selected_question.is_require=='1'" class="required">
+          <span v-if="selected_question.is_require== 1" class="required">
             <span>*</span>
           </span>
           <div class="choicepanel">
           <div v-for="choice in selected_question.question_choice" :key="choice.question_choice_no" class="choice">
             <input type="checkbox" v-model="selected_question.user_ans" :value="Number(choice.question_choice_no)" />
             <label>{{ choice.question_choice_text }}</label>
-            <div v-if="choice.is_other=='1'">
+            <div v-if="choice.is_other==1">
               <input type="text" v-model="selected_question.user_ans_text" placeholder="กรุณาระบุรายละเอียดเพิ่มเติม" class="textbox" />
             </div>
           </div>
           </div>
         </div>
 
-        <div v-if="selected_question.question_type === '5'" class="textcard">
+        <div v-if="selected_question.question_type === 5" class="textcard">
           <span class="quest">{{ selected_question.question_no }}. {{ selected_question.question_name }}</span>
-          <span v-if="selected_question.is_require=='1'" class="required">
+          <span v-if="selected_question.is_require==1" class="required">
             <span>*</span>
           </span>
           <div class="textans">
@@ -59,30 +59,38 @@
 </template>
 
 <script>
-let download =require("downloadjs")
+//let download =require("downloadjs")
 //let fs = require('node:fs');
 //import {writeJsonFileSync} from 'write-json-file';
-let json = require('./question.json');
+//let json = require('./question.json');
+import axios from "axios";
   export default {
+    mounted(){
+      axios.get("https://testapi.gusarea.com/v1/public/question/getData")
+        .then(response=>this.questions=response.data.result)
+    },
     data() {
       return{
-      questions: json , // เก็บข้อมูลแบบสอบถามจากไฟล์ question.json
+      questions:[] , // เก็บข้อมูลแบบสอบถามจากไฟล์ question.json
       }
     },
     methods: {
       submitForm() {
           if(this.valid()){
           //console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
-          download(JSON.stringify(this.questions), 'question.json', "text/plain");
-          this.clear()
+          //download(JSON.stringify(this.questions), 'question.json', "text/plain");
+          axios.post("https://testapi.gusarea.com/v1/public/question/setData",this.questions)
+          .then(response=>console.log(response))
+          .catch(error=>console.log(error))
+          //this.clear()
           }
         },
         clear(){
           for(let i =0; i<this.questions.question.length;i++){
-            if(this.questions.question[i].question_type=='1'||this.questions.question[i].question_type=='5'){
+            if(this.questions.question[i].question_type==1||this.questions.question[i].question_type==5){
               this.questions.question[i].user_ans= null
               this.questions.question[i].user_ans_text=''}
-            else if(this.questions.question[i].question_type=='2'){
+            else if(this.questions.question[i].question_type==2){
               this.questions.question[i].user_ans=[]
               this.questions.question[i].user_ans_text=''}
             //console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
@@ -90,7 +98,7 @@ let json = require('./question.json');
         },
         valid(){
           for(let i =0; i<this.questions.question.length;i++){
-            if(this.questions.question[i].is_require=='1'){
+            if(this.questions.question[i].is_require==1){
               if(this.questions.question[i].user_ans == null){
                 break;
               }
