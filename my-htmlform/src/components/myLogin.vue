@@ -20,7 +20,7 @@
 
 <script>
 import axios from 'axios';
-
+//import {useRouter} from "vue-router";
 export default {
   data() {
     return {
@@ -38,9 +38,11 @@ export default {
       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token.accessToken}`;
     },
     async test() {
-      const res = await axios.post("https://testapi.gusarea.com/v1/private/question/test");
+      //const router = useRouter();
+      await axios.post("https://testapi.gusarea.com/v1/private/question/test");
       //console.log(data.token)
-      console.log(res)
+      console.log(localStorage.getItem('refreshtoken'))
+      //await router.push('/form');
     },
   },
 };
