@@ -43,7 +43,7 @@ export default {
       localStorage.setItem('refreshtoken',response.data.token.refreshToken)
       localStorage.setItem('accesstoken',response.data.token.accessToken)
       localStorage.setItem('user',response.data.member.userName)
-      axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token.accessToken}`;
+      //axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token.accessToken}`;
       alert("Login Successful.");
     },
     async test() {

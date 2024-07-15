@@ -68,7 +68,7 @@ import axios from "axios";
   export default {
     mounted(){
       axios.get("https://testapi.gusarea.com/v1/public/question/getData")
-        .then(response=>this.questions=response.data.result)
+        .then(response=>this.questions = response.data.result)
     },
     data() {
       return{
@@ -81,7 +81,7 @@ import axios from "axios";
           if(this.valid()){
           //console.log('ส่งข้อมูลแบบสอบถาม', this.questions);
           //download(JSON.stringify(this.questions), 'question.json', "text/plain");
-          axios.post("https://testapi.gusarea.com/v1/public/question/setData",{json:this.questions})
+          axios.post("https://testapi.gusarea.com/v1/private/question/setData",{json:this.questions})
           .then(response=>console.log(response))
           .catch(error=>console.log(error))
           //this.clear()
