@@ -33,16 +33,18 @@ export default {
     return {
       username: '',
       password: '',
-      passTest: false
+      passTest: false,
+      //token:''
     };
   },
   methods: {
     async handleSubmit() {
       const response = await axios.post("https://testapi.gusarea.com/v1/public/auth/login", {userName: this.username, password: this.password});
       //console.log(data.token)
-      localStorage.setItem('refreshtoken',response.data.token.refreshToken)
-      localStorage.setItem('accesstoken',response.data.token.accessToken)
-      localStorage.setItem('user',response.data.member.userName)
+      sessionStorage.setItem('refreshtoken',response.data.token.refreshToken)
+      sessionStorage.setItem('accesstoken',response.data.token.accessToken)
+      sessionStorage.setItem('user',response.data.member.userName)
+      //this.token = response.data.token.accessToken
       //axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token.accessToken}`;
       alert("Login Successful.");
     },

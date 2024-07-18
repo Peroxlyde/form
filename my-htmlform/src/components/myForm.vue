@@ -87,6 +87,7 @@ import axios from "axios";
           //this.clear()
           alert("Thank you!\nYour form has been submitted.");
           this.isSuccess=true;
+          //localStorage.clear();
           }
         },
         clear(){
